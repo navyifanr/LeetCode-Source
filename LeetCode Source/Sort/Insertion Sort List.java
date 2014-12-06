@@ -18,7 +18,7 @@ public class Solution {
         if(head==null||head.next==null){
             return head;
         }
-        ListNode list=new ListNode(-1);
+        ListNode list=new ListNode(-1);  //引入一个哨兵
         ListNode pre=list;
         ListNode cur=head;
         while(cur!=null){
