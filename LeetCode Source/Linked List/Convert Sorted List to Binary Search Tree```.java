@@ -39,10 +39,10 @@ public class Solution {
     		return null;
     	}
     	int m=(l+r)/2;
-    	TreeNode left=helper(list,l,m-1);
-    	TreeNode root=new TreeNode(list.get(0).val);
+    	TreeNode left=helper(list,l,m-1);  //设置左子树
+    	TreeNode root=new TreeNode(list.get(0).val);  //设置当前节点作为根
     	root.left=left;
-    	list.set(0,list.get(0).next);
+    	list.set(0,list.get(0).next);    
     	root.right=helper(list,m+1,r);
     	return root;
     }
