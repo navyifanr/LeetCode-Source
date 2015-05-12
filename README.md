@@ -1,3 +1,4 @@
-LeetCode-Source
+[LeetCode](https://leetcode.com/)
 ===============
-code for interview
+
+Practice basic algorithms and data structures. 
