@@ -48,7 +48,7 @@ class Solution {
             if (nums[index] != 0) {
                 int temp = nums[zeroIndex];
                 nums[zeroIndex++] = nums[index];
-                nums[index] = temp; // 注意 index++ 不能放在这里，也不能直接赋值 0，负责第一个数非0的情况会异常
+                nums[index] = temp; // 注意 index++ 不能放在这里，也不能直接赋值 0，否则第一个数非0的情况会异常
             }
             index++;
         }

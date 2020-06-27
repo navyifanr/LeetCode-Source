@@ -47,9 +47,34 @@ public interface Queue<E> extends Collection<E> {
 - 不是同步的，线程不安全，具有线程安全的优先队列使用 PriorityBlockingQueue 类；
 - 提供的入队出队方法(offer, poll, remove(), add) 时间复杂度为O(log n)； remove(object) 和 contain(object) 时间复杂度 O(n)；检索方法 peek, element, size 时间复杂度为 O(1)
 
+创建时，可以指定初始容量和比较器
 ```java
+public PriorityQueue(int initialCapacity) {
+    this(initialCapacity, null);
+}
 
+public PriorityQueue(Comparator<? super E> comparator) {
+    this(DEFAULT_INITIAL_CAPACITY, comparator);
+}
 
+public PriorityQueue(int initialCapacity, Comparator<? super E> comparator) {
+    //……
+}
+```
+
+自动增容：当容量较小时，直接加倍，否则增加 50%
+```java
+private void grow(int minCapacity) {
+    int oldCapacity = queue.length;
+    // Double size if small; else grow by 50%
+    int newCapacity = oldCapacity + ((oldCapacity < 64) ?
+                                     (oldCapacity + 2) :
+                                     (oldCapacity >> 1));
+    // overflow-conscious code
+    if (newCapacity - MAX_ARRAY_SIZE > 0)
+        newCapacity = hugeCapacity(minCapacity);
+    queue = Arrays.copyOf(queue, newCapacity);
+}
 ```
 
 
