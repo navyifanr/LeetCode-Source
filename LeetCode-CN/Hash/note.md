@@ -6,7 +6,28 @@
 Map: key-value 键值对，key 不可重复，value可重复；HashMap, HashTable, ConcurrentHashMap
 Set: 不重复元素；HashSet, TreeSet
 
-HashMap 源码简析：
+HashMap 和 HashTable 区别：
+- HashMap继承于AbstractMap，而Hashtable继承于Dictionary；
+- 线程安全不同。Hashtable的几乎所有函数都是同步的，即它是线程安全的，支持多线程。而HashMap的函数则是非同步的，它不是线程安全的。
+- HashMap的key、value都可以为null。Hashtable的key、value都不可以为null；
+- 迭代器(Iterator)。HashMap的迭代器(Iterator)是fail-fast迭代器，而Hashtable的enumerator迭代器不是fail-fast的。所以当有其它线程改变了HashMap的结构（增加或者移除元素），将会抛出ConcurrentModificationException。
+- 容量的初始值和增加方式都不一样：HashMap默认的容量大小是16；增加容量时，每次将容量变为“原始容量x2”。Hashtable默认的容量大小是11；增加容量时，每次将容量变为“原始容量x2 + 1”；
+- 添加key-value时的hash值算法不同：HashMap添加元素时，是使用自定义的哈希算法。Hashtable没有自定义哈希算法，而直接采用的key的hashCode()。
+- 速度。由于Hashtable是线程安全的也是synchronized，所以在单线程环境下它比HashMap要慢。如果你不需要同步，只需要单一线程，那么使用HashMap性能要好过Hashtable。
+
+LinkedHashMap(底层实现是散列表+双向链表)
+保存插入顺序：LinkedHashMap保存了记录的插入顺序，在用Iterator遍历LinkedHashMap时，先得到的记录肯定是先插入的。也可以在构造时带参数，按照应用次数排序。
+速度慢：在遍历的时候会比HashMap慢，不过有种情况例外：当HashMap容量很大，实际数据较少时，遍历起来可能会比LinkedHashMap慢。因为LinkedHashMap的遍历速度只和实际数据有关，和容量无关，而HashMap的遍历速度和他的容量有关。
+
+TreeMap:基于红黑树实现。TreeMap没有调优选项，因为该树总处于平衡状态。
+HashMap和TreeMap比较
+（1）HashMap:适用于在Map中插入、删除和定位元素。
+（2）TreeMap:适用于按自然顺序或自定义顺序遍历键（key）。
+（3）HashMap通常比TreeMap快一点（树和哈希表的数据结构使然），建议多使用HashMap,在需要排序的Map时候才用TreeMap.
+（4）HashMap 非线程安全 TreeMap 非线程安全
+（5）HashMap的结果是没有排序的，而TreeMap输出的结果是排好序的。
+
+HashMap 源码简析：（底层实现是数组）
 
 put 方法:
 

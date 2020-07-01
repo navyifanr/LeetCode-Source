@@ -42,3 +42,8 @@ class Solution {
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+
+/*
+T2, 7.1 回溯法（DFS），12min
+
+ */
