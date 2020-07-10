@@ -42,9 +42,35 @@ class Solution {
         }
         return nums[high];
     }
+
+    public int findMin(int[] nums) {
+        int low = 0;
+        int high = nums.length - 1;
+        if (nums[low] <= nums[high]) {
+            return nums[low];
+        }
+        while (low <= high) {
+            int mid = high + (low - high) / 2;
+            if (nums[mid] > nums[low]) {  //前半段有序
+                if (mid + 1 < nums.length && nums[mid + 1] < nums[mid]) {
+                    return nums[mid + 1];
+                } else {
+                    low = mid + 1;
+                }
+            } else { //后半段有序
+                if (mid - 1 >= 0 && nums[mid - 1] > nums[mid]) {
+                    return nums[mid];
+                } else {
+                    high = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
 /*
 T1-7.3, 33min
+T2-7.8 11min
  */

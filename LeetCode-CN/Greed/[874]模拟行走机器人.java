@@ -137,3 +137,7 @@ class Solution {
 //    public boolean isBlock(int x, int y, int[][] ob)
 }
 //leetcode submit region end(Prohibit modification and deletion)
+
+/*
+T2-7.7 15min
+ */

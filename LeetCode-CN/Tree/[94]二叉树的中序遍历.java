@@ -59,5 +59,29 @@ class Solution {
             }
         }
     }
+
+    //迭代法：时间复杂度 O(n), 空间复杂度 O(n)
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
+        TreeNode curNode = root;
+        while (curNode != null || !stack.isEmpty()) {
+            while (curNode != null) {
+                stack.add(curNode);
+                curNode = curNode.left;
+            }
+            curNode = stack.pollLast();
+            result.add(curNode.val);
+            curNode = curNode.right;
+        }
+        return result;
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+
+/*
+T3-7.8 迭代法，15min
+ */

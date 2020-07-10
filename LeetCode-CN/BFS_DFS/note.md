@@ -55,9 +55,3 @@ def DFS(self, tree):
 	# other processing work
 	...
 ```
-
-
-
-
-|题目|第一次|第二次|第三次|
-[102]二叉树的层序遍历|7.1 30min|

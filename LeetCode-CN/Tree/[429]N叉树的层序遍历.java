@@ -64,9 +64,9 @@ class Solution {
             List<Integer> list = new ArrayList<>();
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                Node node = queue.poll();
+                Node node = queue.poll();      //==pollFirst()
                 list.add(node.val);
-                queue.addAll(node.children);
+                queue.addAll(node.children);   //直接一次性按顺序 addAll
             }
             result.add(list);
         }
@@ -93,3 +93,8 @@ class Solution {
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+
+
+/*
+T2-7.8 >20min
+ */

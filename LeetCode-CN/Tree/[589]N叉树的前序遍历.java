@@ -63,9 +63,9 @@ class Solution {
         }
         stack.add(root);
         while (!stack.isEmpty()) {
-            Node node = stack.pollLast();
+            Node node = stack.pollLast();   //注意，取最后一个
             result.add(node.val);
-            for (int i = node.children.size() - 1; i >= 0; i--) {
+            for (int i = node.children.size() - 1; i >= 0; i--) {  //此处要倒序 add
                 stack.add(node.children.get(i));
             }
         }
@@ -73,3 +73,7 @@ class Solution {
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+
+/*
+T3-7.8 20min
+ */
