@@ -9,16 +9,16 @@
 代码模板
 ```$java
 public void recur(int level, int param) { 
-  //1. terminator 
+  //1. 递归终止条件
   if (level > MAX_LEVEL) { 
     // process result 
     return; 
   }
-  //2. process current logic 
+  //2. 处理当前层逻辑
   process(level, param); 
-  //3. drill down 
+  //3. 下探到下一层
   recur( level: level + 1, newParam); 
-  //4. restore current status 
+  //4. 恢复当前层状态值（如果需要的话）
 }
 ```
 
@@ -37,22 +37,22 @@ public void recur(int level, int param) {
 代码模板
 ```Python
 def divide_conquer(problem, param1, param2, ...): 
-  #1. recursion terminator 
+  #1. 递归终止条件
   if problem is None: 
 	print_result 
 	return 
-  #2. prepare data 
+  #2. prepare data 拆分子问题
   data = prepare_data(problem) 
   subproblems = split_problem(problem, data) 
-  #3. conquer subproblems 
+  #3. conquer subproblems 调子问题的递归函数
   subresult1 = self.divide_conquer(subproblems[0], p1, ...) 
   subresult2 = self.divide_conquer(subproblems[1], p1, ...) 
   subresult3 = self.divide_conquer(subproblems[2], p1, ...) 
   …
-  #4. process and generate the final result 
+  #4. process and generate the final result 合并子问题结果
   result = process_result(subresult1, subresult2, subresult3, …)
 	
-  #5. revert the current level states
+  #5. revert the current level states 恢复当前层状态值（如果需要的话）
 ```
 
 ### 回溯
