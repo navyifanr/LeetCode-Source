@@ -55,5 +55,20 @@ class Solution {
         memo[amount] = min == Integer.MAX_VALUE ? -1 : min;
         return memo[amount];
     }
+
+    //DP 方程： f(n) = min{f(n - ai) + 1}
+    public int coinChange(int[] coins, int amount) {
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, amount + 1);  //注意，取比 amount 大 1
+        dp[0] = 0;    //要将 0 索引赋值
+        for (int i = 1; i <= amount; i++) {
+            for (int j = 0; j < coins.length; j++) {
+                if (i >= coins[j]) { //要凑的钱 i，比币种值大，才有必要对比
+                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+                }
+            }
+        }
+        return dp[amount] == amount + 1 ? -1 : dp[amount];
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
