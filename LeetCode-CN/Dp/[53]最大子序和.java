@@ -36,6 +36,13 @@ class Solution {
             pre = Math.max(pre + num, num);
             maxSum = Math.max(pre, maxSum);
         }
+        //使用一个 pre 就行，无需 cur
+//        int pre = nums[0], cur = 0;
+//        for (int i = 1; i < nums.length; i++) {
+//            cur = Math.max(pre + nums[i], nums[i]);
+//            max = Math.max(max, cur);
+//            pre = cur;
+//        }
         return maxSum;
     }
 }
@@ -43,4 +50,5 @@ class Solution {
 
 /*
 T1-7.17, 15min
+T2-7.29，15min   注意最终结果不是返回 dp[nums.length - 1]，而是 maxSum
  */

@@ -46,5 +46,34 @@ class Solution {
         }
         return dp[len];
     }
+
+    //dp[n] = dp[n-1] + 1
+    //      = dp[n-2] + 1  (后两位在 10-26)
+    public int numDecodings(String s) {
+        if (s == null || s.length() == 0 || s.charAt(0) == '0') return 0;
+        int len = s.length();
+        int[] dp = new int[len + 1];
+        dp[0] = 1;   //注意 dp[0] 是 1，不是 0
+        dp[1] = 1;
+        for (int i = 2; i <= len; i++) {
+            //error
+//            if (s.charAt(i - 1) == '0') return 0;
+//            dp[i] = dp[i - 1];
+//            if (s.charAt(i - 1) <= '6' && s.charAt(i - 2) == '2' || s.charAt(i - 2) == '1') {
+//                dp[i] += dp[i - 2];
+//            }
+            if (s.charAt(i - 1) != '0') {
+                dp[i] += dp[i - 1];   //这里不用 +1
+            }
+            if (s.charAt(i - 2) == '1' || (s.charAt(i - 2) == '2' && s.charAt(i - 1) <= '6')) {
+                dp[i] += dp[i - 2];   //这里不用 +1
+            }
+        }
+        return dp[len];
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+
+/*
+T2-7.29, >20min
+ */
