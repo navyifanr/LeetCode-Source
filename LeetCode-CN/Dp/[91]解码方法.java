@@ -26,7 +26,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    // dp[n] = dp[n - 1] + 1 + dp[n - 2] + 1
+    // dp[n] = dp[n - 1] + dp[n - 2]
     public int numDecodings(String s) {
         int len = s.length();
         if (len == 0 || s.charAt(0) == '0') { //不能是 0 开头
@@ -47,8 +47,8 @@ class Solution {
         return dp[len];
     }
 
-    //dp[n] = dp[n-1] + 1
-    //      = dp[n-2] + 1  (后两位在 10-26)
+    //dp[n] = dp[n-1]
+    //      + dp[n-2]  (后两位在 10-26)
     public int numDecodings(String s) {
         if (s == null || s.length() == 0 || s.charAt(0) == '0') return 0;
         int len = s.length();

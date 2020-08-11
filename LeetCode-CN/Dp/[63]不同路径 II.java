@@ -43,7 +43,7 @@ class Solution {
         }
         int[][] dp = new int[m][n];
         for (int i = 0; i < m; i++) {
-            if (obstacleGrid[i][0] == 1) {  //注意，主要遇到障碍，后面的，也是不可达的，立即跳出循环
+            if (obstacleGrid[i][0] == 1) {  //注意，只要遇到障碍，后面的，也是不可达的，立即跳出循环
                 break;
             }
             dp[i][0] = 1;
