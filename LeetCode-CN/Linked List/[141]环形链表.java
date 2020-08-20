@@ -55,8 +55,22 @@
  *
  * 方法1：遍历用HashSet存储访问过的节点；时间复杂度-O(n), 空间复杂度-O(n)
  * 方法2：快慢指针（快指针的使用要注意判空）;时间复杂度-O(n), 空间复杂度-O(1)
+ *       （快指针必须是走 2 步，不然不会相遇）
  */
 public class Solution {
+    //代码优化
+    public boolean hasCycle(ListNode head) {
+        ListNode fast = head, slow = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean hasCycle(ListNode head) {
         if (head == null || head.next == null) return false;
         ListNode fastNode = head;
@@ -72,3 +86,7 @@ public class Solution {
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+
+/*
+T3-20.8.15, 3min
+ */

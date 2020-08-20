@@ -23,6 +23,28 @@
  * 时间复杂度O(n), 空间复杂度O(1)
  */
 class Solution {
+    //error，注意，排好序的，要衔接上
+//    public ListNode swapPairs(ListNode head) {
+//        if (head == null || head.next == null) {
+//            return head;
+//        }
+//        ListNode prev = head, cur = head.next;
+//        head = cur;
+//        while (cur != null) {
+//            ListNode node = cur.next;
+//            prev.next = node;
+//            cur.next = prev;
+//
+//            prev = node;
+//            if (node != null) {
+//                cur = node.next;
+//            } else {
+//                break;
+//            }
+//        }
+//        return head;
+//    }
+
     public ListNode swapPairs(ListNode head) {
         ListNode fakeHead = new ListNode(-1);
         ListNode moveNode = fakeHead;
@@ -51,20 +73,24 @@ class Solution {
     public ListNode swapPairs(ListNode head) {
         ListNode fakeHead = new ListNode(-1);
         fakeHead.next = head;
-        ListNode preNode = fakeHead;
-        while (head != null && head.next != null) {
-            ListNode firstNode = head;
-            ListNode secondNode = head.next;
+        ListNode prev = fakeHead, cur = head;
+        while (cur != null && cur.next != null) {
+            ListNode first = cur;
+            ListNode second = cur.next;
 
             //交换节点
-            preNode.next = secondNode;
-            firstNode.next = secondNode.next;
-            secondNode.next = firstNode;
+            prev.next = second;
+            first.next = second.next;
+            second.next = first;
 
-            preNode = firstNode;
-            head = firstNode.next;
+            prev = first;
+            cur = first.next;
         }
         return fakeHead.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+
+/*
+T2-20.8.16, 20min
+ */

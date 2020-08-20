@@ -40,7 +40,7 @@ class Solution {
             temp.next = stack.pollLast();
             temp = temp.next;
         }
-        temp.next = null;
+        temp.next = null;  //注意最后一个节点 next 指向 null
         return fakeHead.next;
     }
 
@@ -52,11 +52,11 @@ class Solution {
         ListNode preNode = null;
         ListNode curNode = head;
         while (curNode != null) {
-            ListNode node = curNode.next;
-            curNode.next = preNode;
-            preNode = curNode;
+            ListNode node = curNode.next;  //临时存储下个节点
+            curNode.next = preNode;  //修改当前节点指向的下个节点
+            preNode = curNode;       //修改上个节点
 
-            curNode = node;
+            curNode = node;         //修改当前节点
         }
         return preNode;
     }
@@ -65,4 +65,5 @@ class Solution {
 
 /*
 T2-7.10  > 20min
+T3-20.8.15, >15min 迭代法
  */

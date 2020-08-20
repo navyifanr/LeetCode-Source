@@ -22,6 +22,22 @@
  */
 class Solution {
     public ListNode getKthFromEnd(ListNode head, int k) {
+        ListNode fast = head, slow = head;
+        while (k-- > 0) {
+            if (fast == null) {
+                fast = head;
+            } else {
+                fast = fast.next;
+            }
+        }
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+
+    public ListNode getKthFromEnd(ListNode head, int k) {
         int steps = 1;
         ListNode slow = head, fast = head;
         while (steps < k && fast != null) {
@@ -57,3 +73,7 @@ class Solution {
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+
+/*
+T2-20.8.16, 5min
+ */

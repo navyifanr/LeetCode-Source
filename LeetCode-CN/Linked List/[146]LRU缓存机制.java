@@ -70,6 +70,7 @@ class LRUCache {
         return node.value;
     }
 
+    //注意：移动结点到头部的逻辑就是删除、然后添加到头部
     private void moveToHead(DLinkedNode node) {
         removeNode(node);
         addToHead(node);

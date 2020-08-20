@@ -57,6 +57,41 @@
  *       注意，**起始指针一定要一致**，否则有可能会陷入死循环
  */
 public class Solution {
+    //哈希法：
+    public ListNode detectCycle(ListNode head) {
+        HashSet<ListNode> visited = new HashSet<>();
+        ListNode node = head;
+        while (node != null) {
+            if (visited.contains(node)) {
+                return node;
+            }
+            visited.add(node);
+            node = node.next;
+        }
+        return null;
+    }
+
+    //代码优化版
+    public ListNode detectCycle(ListNode head) {
+        ListNode fast = head, slow = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                break;
+            }
+        }
+        if (fast == null || fast.next == null) {
+            return null;
+        }
+        slow = head;
+        while (fast != slow) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return fast;
+    }
+
     public ListNode detectCycle(ListNode head) {
         if (head == null || head.next == null) {
             return null;
