@@ -97,6 +97,8 @@
  * }
  */
 public class Solution {
+
+    //方法1：
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         ListNode node1 = headA;
         ListNode node2 = headB;
@@ -139,5 +141,34 @@ public class Solution {
         modNode.next = null;
         return fast;
     }
+
+    //方法2：
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) return null;
+        ListNode nodesA = headA, nodesB = headB;
+        //注意，循环的结束判断，两个链接相接，没交点，最终会结束在 null 节点；相交点不一定是值相同的第一个点
+        while (nodesA != nodesB) {
+            nodesA = nodesA == null ? headB : nodesA.next;
+            nodesB = nodesB == null ? headA : nodesB.next;
+        }
+        return nodesA;
+    }
+
+    /*
+     * 
+     *  Your Input
+        8
+        [4,1,8,4,5]
+        [5,6,1,8,4,5]
+        2
+        3
+        Output (0 ms)
+        Intersected at '8'
+        Expected Answer
+        Intersected at '8'
+
+     * 4,1,8,4,5,5,6,1,8,4,5
+     * 5,6,1,8,4,5,4,1,8,4,5
+     */
 }
 //leetcode submit region end(Prohibit modification and deletion)

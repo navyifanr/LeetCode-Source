@@ -3,7 +3,7 @@
 // 
 //
 // 示例 1： 
-//
+// 
 // 
 //输入：l1 = [1,2,4], l2 = [1,3,4]
 //输出：[1,1,2,3,4,4]
@@ -32,7 +32,8 @@
 // -100 <= Node.val <= 100 
 // l1 和 l2 均按 非递减顺序 排列 
 // 
-// Related Topics 递归 链表 👍 2416 👎 0
+//
+// Related Topics 递归 链表 👍 2587 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -49,22 +50,23 @@
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode fakeHead = new ListNode(-1);
-        ListNode dumpNode = fakeHead;
-        while (list1 != null && list2 != null) {
-            if (list1.val <= list2.val) {
-                dumpNode.next = list1;
-                list1 = list1.next;
+        ListNode p = fakeHead;
+        ListNode l1 = list1, l2 = list2;
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
+                p.next = l1;
+                l1 = l1.next;
             } else {
-                dumpNode.next = list2;
-                list2 = list2.next;
+                p.next = l2;
+                l2 = l2.next;
             }
-            dumpNode = dumpNode.next;
+            p = p.next;
         }
-        if (list1 != null) {
-            dumpNode.next = list1;
+        if (l1 != null) {
+            p.next = l1;
         }
-        if (list2 != null) {
-            dumpNode.next = list2;
+        if (l2 != null) {
+            p.next = l2;
         }
         return fakeHead.next;
     }

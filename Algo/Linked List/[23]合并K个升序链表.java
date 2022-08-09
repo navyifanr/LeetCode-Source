@@ -42,10 +42,14 @@
 // lists[i] 按 升序 排列 
 // lists[i].length 的总和不超过 10^4 
 // 
-// Related Topics 链表 分治 堆（优先队列） 归并排序 👍 1942 👎 0
+//
+// Related Topics 链表 分治 堆（优先队列） 归并排序 👍 2100 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
+import java.util.PriorityQueue;
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -58,22 +62,24 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        if (lists.length == 0) return null;  //注意，长度为 0 的情况
-        PriorityQueue<ListNode> pq = new PriorityQueue<>(lists.length, (n1, n2) -> (n1.val - n2.val));
+        //注意空的情况
+        if (lists == null || lists.length == 0) return null;
+        ListNode fakeHead = new ListNode(-1);
+        ListNode p = fakeHead;
+        //优先队列，最小堆
+        PriorityQueue<ListNode> pq = new PriorityQueue<>(lists.length, (a, b) -> (a.val - b.val));
         for (ListNode node : lists) {
             if (node != null) {
-                pq.offer(node);
+                pq.add(node);
             }
         }
-        ListNode fakeHead = new ListNode(-1);
-        ListNode tempNode = fakeHead;
-        while (pq.peek() != null) {
-            ListNode target = pq.poll();
-            tempNode.next = target;
-            tempNode = tempNode.next;
-            if (target.next != null) {
-                pq.offer(target.next);
+        while (!pq.isEmpty()) {
+            ListNode node = pq.poll();
+            p.next = node;
+            if (node.next != null) {
+                pq.add(node.next);
             }
+            p = p.next;
         }
         return fakeHead.next;
     }
