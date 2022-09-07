@@ -79,6 +79,7 @@ public class Solution {
                 break;
             }
         }
+        // 注意是判断 fast, 不是判断 slow != fast
         if (fastNode == null || fastNode.next == null) {
             return null;
         }
